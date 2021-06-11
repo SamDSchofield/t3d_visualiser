@@ -134,7 +134,7 @@ def draw_trajectory(trajectory):
 
 
 class Visualiser:
-    def __init__(self, vo_function, *args):
+    def __init__(self, vo_function, *args, **kwargs):
         """Tool for visualising frames/poses and pointclouds
 
         Args:
@@ -152,7 +152,10 @@ class Visualiser:
         self.vis.add_geometry(o3d_frame())
         self.font = ImageFont.truetype(get_font(), 18 * 10)
 
-        threading.Thread(target=vo_function, args=[*args, self]).start()
+        # threading.Thread(target=vo_function, args=[*args, self]).start()
+        kwargs["visualiser"] = self
+        threading.Thread(target=vo_function, args=args, kwargs=kwargs).start()
+
 
     def add_frame(self, id_, pose, colour):
         """Adds a frame to be visualised
