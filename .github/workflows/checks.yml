@@ -1,0 +1,15 @@
+# .github/workflows/checks.yml
+name: Run checks
+on:
+  push:
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out
+      uses: actions/checkout@v2
+    - name: Set up Python
+    - name: Install pre-commit
+      run: pip install pre-commit && pre-commit install
+    - name: Run pre-commit on all files
+      run: pre-commit run -a

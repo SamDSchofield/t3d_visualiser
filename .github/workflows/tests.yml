@@ -1,0 +1,25 @@
+# .github/workflows/tests.yml
+name: Run tests
+on:
+  push:
+jobs:
+  tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [
+          ubuntu-20.04,
+        ]
+        python-version: [3.6, 3.7, 3.8, 3.9]
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Check out
+      uses: actions/checkout@v2
+    - name: Set up Python 3.6
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.6
+    - name: Install
+      run: pip install . && pip install -r requirements_dev.txt
+    - name: Run tests
+      run: pytest
