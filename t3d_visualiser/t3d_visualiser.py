@@ -207,6 +207,7 @@ class Visualiser:
         view_ctl.set_front([0, 0, -1])
         view_ctl.set_lookat([1, 0, 0])
         view_ctl.set_zoom(zoom)
+        view_ctl.set_constant_z_far(20)
 
     def _update_pointcloud_marker(self):
         """Updates the markers for the point clouds. Should be called from visualiser.run.
